@@ -1,0 +1,47 @@
+{
+  "name": "ambulances",
+  "version": "1.0.0",
+  "description": "From the location of ambulance posts, create two GeoJSON files, one that contains their locations, the other contains\r the area they can reach within 15 minutes. To determine this, we are creating a small script that will use\r [OSRM](https://project-osrm.org) for routing information. See [Agent-Smith](https://github.com/erikvullings/agent-smith)\r for an example how to run it locally.",
+  "main": "src/cli.js",
+  "bin": {
+    "howfar": "./bin/run.js"
+  },
+  "scripts": {
+    "nodemon": "nodemon src\\cli.js -p 3000 --intervals 15 -n http://127.0.0.1:5000",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags",
+    "minor-release": "npm version minor && npm publish && git push --follow-tags",
+    "major-release": "npm version major && npm publish && git push --follow-tags",
+    "dry-run": "npm publish --dry-run"
+  },
+  "keywords": [],
+  "author": "Erik Vullings <erik.vullings@gmail.com> (http://www.tno.nl)",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "@koa/cors": "^3.1.0",
+    "turf-deintersect": "^1.0.4",
+    "@turf/helpers": "^6.1.4",
+    "@turf/bbox": "^6.0.1",
+    "@turf/circle": "^6.0.1",
+    "@turf/transform-rotate": "^5.1.5",
+    "@turf/explode": "^5.1.5",
+    "@turf/destination": "^6.0.1",
+    "@turf/point-grid": "^6.0.1",
+    "@turf/planepoint": "5.1.5",
+    "@turf/isobands": "5.1.5",
+    "@turf/tag": "5.1.5",
+    "@turf/tin": "6.0.2",
+    "@turf/length": "6.0.2",
+    "concaveman": "^1.2.0",
+    "geojson-rewind": "^0.3.1",
+    "osrm-rest-client": "^0.1.3",
+    "commander": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.10.0",
+    "@types/concaveman": "1.1.3",
+    "@types/commander": "^2.12.2",
+    "@types/koa": "2.0.45",
+    "nodemon": "^2.0.4"
+  }
+}

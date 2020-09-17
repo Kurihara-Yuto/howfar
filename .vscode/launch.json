@@ -1,0 +1,33 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Isochrone",
+      "program": "${workspaceFolder}/src/cli.js",
+      "request": "launch",
+      "args": [
+        // Enable the next 2 lines for using the direct, cli, version (no REST service is started)
+        // "-c",
+        // "5.5, 51.5",
+        // Enable the next 2 lines for using the REST client
+        "-p",
+        "3000",
+        // Enable the next 2 lines for the car service
+        // "-n",
+        // "http://127.0.0.1:5000",
+        // Enable the next 4 lines for a walking service
+        "-t",
+        "foot",
+        "-n",
+        "http://127.0.0.1:5002"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+  ]
+}
