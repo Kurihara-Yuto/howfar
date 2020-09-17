@@ -13,7 +13,14 @@
     "major-release": "npm version major && npm publish && git push --follow-tags",
     "dry-run": "npm publish --dry-run"
   },
-  "keywords": [],
+  "keywords": [
+    "OSRM",
+    "REST service",
+    "isochrones",
+    "accessibility",
+    "routing",
+    "map"
+  ],
   "author": "Erik Vullings <erik.vullings@gmail.com> (http://www.tno.nl)",
   "license": "MIT",
   "dependencies": {
