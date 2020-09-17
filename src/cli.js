@@ -2,6 +2,8 @@ const fs = require("fs");
 const { program } = require("commander");
 const OSRM = require("osrm-rest-client").OSRM;
 const driveTime = require("./driveTime");
+const Koa = require("koa");
+const cors = require("@koa/cors");
 
 const commaSeparatedList = (value) => value.split(",").map((n) => +n);
 
@@ -52,7 +54,7 @@ program
   );
 
 program.parse();
-console.log(program.opts());
+// console.log(program.opts());
 
 const {
   port,
@@ -78,9 +80,8 @@ if (coordinates) {
 } else if (port) {
   const regex = /\/([\d.]*)\/([\d.]*)/g;
 
-  const Koa = require("koa");
   const app = new Koa();
-
+  app.use(cors());
   app.use(async (ctx) => {
     const match = regex.exec(ctx.url);
     if (match && match.length >= 3) {

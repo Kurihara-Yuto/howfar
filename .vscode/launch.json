@@ -16,13 +16,13 @@
         "-p",
         "3000",
         // Enable the next 2 lines for the car service
-        // "-n",
-        // "http://127.0.0.1:5000",
-        // Enable the next 4 lines for a walking service
-        "-t",
-        "foot",
         "-n",
-        "http://127.0.0.1:5002"
+        "http://127.0.0.1:5000"
+        // Enable the next 4 lines for a walking service
+        // "-t",
+        // "foot",
+        // "-n",
+        // "http://127.0.0.1:5002"
       ],
       "skipFiles": [
         "<node_internals>/**"
