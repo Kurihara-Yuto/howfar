@@ -106,6 +106,7 @@ if (coordinates) {
         bands
       );
       ctx.body = result.iso;
+      // ctx.body = result.circlePoints;
       // ctx.body = result.samplePoints;
       // ctx.body = result.tin;
     } else {
