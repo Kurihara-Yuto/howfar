@@ -1,6 +1,6 @@
 {
   "name": "howfar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "REST service or cli to answer the question: How far can you travel from a location? Returns a GeoJSON file.",
   "main": "src/cli.js",
   "bin": {
