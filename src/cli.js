@@ -78,7 +78,7 @@ if (coordinates) {
     })
     .catch(console.error);
 } else if (port) {
-  const regex = /\/([\d.]*)\/([\d.]*)/g;
+  const regex = /\/([\d.]*)\/([\d.]*)/;
 
   const app = new Koa();
   app.use(cors());
