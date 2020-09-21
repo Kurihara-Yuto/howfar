@@ -33,8 +33,12 @@ const driveTime = async (
   detail = 3,
   bands = 3
 ) => {
+  const nearest = await osrm.nearest({ coordinates: [coordinates] });
   // The origin of the catchment.
-  const [lng, lat] = coordinates;
+  const [lng, lat] =
+    nearest && nearest.waypoints && nearest.waypoints.length > 0
+      ? nearest.waypoints[0].location
+      : coordinates;
 
   const data = {
     circlePoints: [],
@@ -71,13 +75,58 @@ const driveTime = async (
     parseFloat(pt.geometry.coordinates[1].toFixed(6)),
   ]);
 
+  const tableCoord = [[lng, lat]].concat(destinations);
+
   const jbody = await osrm
     .table({
       sources: [0],
-      coordinates: [coordinates].concat(destinations),
+      coordinates: tableCoord,
       generate_hints: false,
     })
     .catch(console.error);
+
+  if (
+    jbody &&
+    jbody.sources &&
+    jbody.sources[0] &&
+    jbody.sources[0].distance > 1000 &&
+    detail > 1
+  ) {
+    const newReach = 0.667 * reach;
+    console.warn(
+      `Source location of isochrone has moved ${jbody.sources[0].distance}m! Retrying with reach ${newReach}...`
+    );
+    return driveTime([lng, lat], osrm, distance, newReach, detail, bands);
+  }
+
+  // var jbody,
+  //   i = 0;
+  // do {
+  //   if (i > 1) {
+  //     console.warn(
+  //       `Source location of isochrone after ${i} iteration(s) is ${jbody.sources[0].distance}m!`
+  //     );
+  //   }
+  //   jbody = await osrm
+  //     .table({
+  //       sources: [0],
+  //       coordinates: tableCoord.slice(0, tableCoord.length - i * 24),
+  //       generate_hints: false,
+  //     })
+  //     .catch(console.error);
+  //   i++;
+  // } while (
+  //   i < 3 &&
+  //   jbody &&
+  //   jbody.sources &&
+  //   jbody.sources[0] &&
+  //   jbody.sources[0].distance > 1000
+  // );
+  // if (i > 1) {
+  //   console.warn(
+  //     `Source location of isochrone after ${i} iteration(s) is ${jbody.sources[0].distance}m!`
+  //   );
+  // }
 
   // Assign the results to the samplePoints.
   for (let i = 0; i < destinations.length; i++) {
