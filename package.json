@@ -1,6 +1,6 @@
 {
   "name": "howfar",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Create GeoJSON isochrone contours based on how far you can drive, cycle or walk in an interval based on the [Open Source Routing Machine (OSRM)](https://project-osrm.org).",
   "main": "src/cli.js",
   "bin": {
