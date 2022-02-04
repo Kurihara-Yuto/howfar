@@ -63,7 +63,7 @@ const {
   output,
   profile,
   serviceProvider,
-} = program;
+} = program.opts();
 const defaultProfile = profile === "car" ? "driving" : profile;
 
 const osrm = OSRM({ osrm: serviceProvider, defaultProfile });
