@@ -35,27 +35,27 @@
   },
   "homepage": "https://github.com/erikvullings/howfar#readme",
   "dependencies": {
-    "koa": "^2.13.4",
-    "@koa/cors": "^3.1.0",
-    "turf-deintersect": "^1.0.4",
-    "@turf/helpers": "^6.5.0",
+    "@koa/cors": "^5.0.0",
     "@turf/bbox": "^6.5.0",
     "@turf/circle": "^6.5.0",
-    "@turf/transform-rotate": "^6.5.0",
-    "@turf/explode": "^6.5.0",
     "@turf/destination": "^6.5.0",
-    "@turf/point-grid": "^6.5.0",
-    "@turf/planepoint": "6.5.0",
+    "@turf/explode": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
     "@turf/isobands": "6.5.0",
+    "@turf/length": "6.5.0",
+    "@turf/planepoint": "6.5.0",
+    "@turf/point-grid": "^6.5.0",
     "@turf/tag": "6.5.0",
     "@turf/tin": "6.5.0",
-    "@turf/length": "6.5.0",
+    "@turf/transform-rotate": "^6.5.0",
+    "commander": "^9.0.0",
+    "koa": "^2.13.4",
     "osrm-rest-client": "^0.1.7",
-    "commander": "^9.0.0"
+    "turf-deintersect": "^1.0.4"
   },
   "devDependencies": {
-    "@types/node": "^17.0.14",
     "@types/koa": "2.13.4",
-    "nodemon": "^2.0.15"
+    "@types/node": "^17.0.14",
+    "nodemon": "^3.0.3"
   }
 }

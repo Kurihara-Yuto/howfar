@@ -59,7 +59,9 @@ program.parse();
 const {
   port,
   coordinates,
-  distance,
+  // distance,
+  minutes,
+  maxKmh,
   output,
   profile,
   serviceProvider,
@@ -68,11 +70,13 @@ const defaultProfile = profile === "car" ? "driving" : profile;
 
 const osrm = OSRM({ osrm: serviceProvider, defaultProfile });
 
-const maxKmh = profile === "car" ? 100 : profile === "bike" ? 30 : 10;
+// const maxKmh = profile === "car" ? 100 : profile === "bike" ? 30 : 10;
 
 if (coordinates) {
-  const maxDistanceInKm = (maxKmh / 60) * distance;
-  driveTime(coordinates, osrm, distance * 60, maxDistanceInKm)
+  // const maxDistanceInKm = (maxKmh / 60) * distance;
+  const maxDistanceInKm = (maxKmh / 60) * minutes;
+  // driveTime(coordinates, osrm, distance * 60, maxDistanceInKm)
+  driveTime(coordinates, osrm, minutes * 60, maxDistanceInKm)
     .then((result) => {
       fs.writeFileSync(output, JSON.stringify(result.iso));
     })
@@ -89,7 +93,9 @@ if (coordinates) {
       const lon = +match[2];
 
       const params = parseQueryParams(ctx.url);
-      const minutes = +params.distance || distance;
+      // const minutes = +params.distance || distance;
+      const minutes = +params.minutes || minutes;
+      const maxKmh = +params.maxKmh || maxKmh;
       const bands = +params.bands || 3;
       const detail = +params.detail || 3;
       const maxDistanceInKm = (maxKmh / 60) * minutes;
